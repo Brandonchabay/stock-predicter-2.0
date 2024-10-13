@@ -1,0 +1,8 @@
+{
+  "vscode-janus-debug.uploadOnSave": [
+    "Page",
+    "Navbar",
+    "CardSlider",
+    "searchBar"
+  ]
+}
