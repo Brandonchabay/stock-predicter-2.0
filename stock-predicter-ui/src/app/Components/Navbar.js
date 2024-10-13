@@ -85,9 +85,14 @@ export default function Navbar() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+          <img
+            src="https://img.freepik.com/free-vector/bird-colorful-logo-gradient-vector_343694-1365.jpg"
+            alt="Image"
+            className="w-12 h-8 mr-10"
+          />
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              My Profile
               <ChevronDownIcon
                 aria-hidden="true"
                 className="h-5 w-5 flex-none text-gray-400"
@@ -142,13 +147,13 @@ export default function Navbar() {
           </Popover>
 
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+            Market Overview
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+            Portfolio
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+            Sell
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
