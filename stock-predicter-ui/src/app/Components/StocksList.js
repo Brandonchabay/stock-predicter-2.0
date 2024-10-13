@@ -1,6 +1,3 @@
-import React from "react";
-
-// Sample stock data
 const stocks = [
   {
     ticker: "AAPL",
@@ -27,33 +24,40 @@ const stocks = [
   },
 ];
 
-export default function StockList({ onStockClick }) {
+export default function StockList({ onStockClick, loading, selectedStock }) {
   return (
     <ul
       role="list"
       className="divide-y divide-gray-200 bg-white shadow-md rounded-md"
     >
-      {stocks.map((stock) => (
-        <li
-          key={stock.ticker}
-          className="flex justify-between items-center gap-x-4 py-4 px-6 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
-          onClick={() => onStockClick(stock.ticker)}
-        >
-          <div className="flex items-center gap-x-4">
-            <img
-              alt={`${stock.ticker} logo`}
-              src={stock.imageUrl}
-              className="h-12 w-12 rounded-full bg-gray-100 shadow-md"
-            />
-            <div className="flex flex-col">
-              <span className="font-semibold text-lg text-gray-800">
-                {stock.ticker}
-              </span>
-              <p className="text-sm text-gray-600">{stock.price}</p>
+      {stocks.map((stock) => {
+        const isSelected = selectedStock === stock.ticker;
+        const isGrayedOut = loading && !isSelected;
+
+        return (
+          <li
+            key={stock.ticker}
+            className={`flex justify-between items-center gap-x-4 py-4 px-6 transition-colors duration-200 cursor-pointer ${
+              isGrayedOut ? "text-gray-400" : "text-black"
+            } ${isSelected ? "font-bold" : ""} ${
+              isGrayedOut ? "pointer-events-none" : "hover:bg-gray-50"
+            }`}
+            onClick={() => !loading && onStockClick(stock.ticker)}
+          >
+            <div className="flex items-center gap-x-4">
+              <img
+                alt={`${stock.ticker} logo`}
+                src={stock.imageUrl}
+                className="h-12 w-12 rounded-full bg-gray-100 shadow-md"
+              />
+              <div className="flex flex-col">
+                <span className="font-semibold text-lg">{stock.ticker}</span>
+                <p className="text-sm">{stock.price}</p>
+              </div>
             </div>
-          </div>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   );
 }
