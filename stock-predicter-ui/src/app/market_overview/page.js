@@ -1,17 +1,13 @@
+"use client";
+import { useState } from "react";
+import Chart from "../Components/Chart";
 import Navbar from "../Components/Navbar";
-<<<<<<< Updated upstream
-
-export default function marketOverview() {
-  return (
-    <div>
-      <Navbar />
-=======
 import StockList from "../Components/StocksList";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextGeneratorEffect from "../Components/TextGeneratorEffect";
-import Card from "@mui/material/Card"; // For card layout
-import CardContent from "@mui/material/CardContent"; // For card content
-import Typography from "@mui/material/Typography"; // For text in card
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 export default function MarketOverview() {
   const [selectedStock, setSelectedStock] = useState(null);
@@ -19,7 +15,7 @@ export default function MarketOverview() {
   const [loadingStockData, setLoadingStockData] = useState(false);
   const [loadingAiSuggestions, setLoadingAiSuggestions] = useState(false);
   const [aiSuggestions, setAiSuggestions] = useState([]);
-  const stocks = ["AAPL", "TSLA", "AMZN", "GOOGL", "MSFT"]; // Example stock list
+  const stocks = ["AAPL", "TSLA", "AMZN", "GOOGL", "MSFT"];
 
   // Function to sequentially generate AI suggestions
   const fetchAiSuggestions = async (stock) => {
@@ -40,14 +36,13 @@ export default function MarketOverview() {
 
       const result = await response.json();
       if (result.code === "SUCCESS") {
-        // Process suggestions one by one
         for (const suggestion of result.message) {
           await new Promise((resolve) => {
             setAiSuggestions((prevSuggestions) => [
               ...prevSuggestions,
               suggestion,
             ]);
-            setTimeout(resolve, 2000); // Adjust delay for each suggestion
+            setTimeout(resolve, 2000);
           });
         }
       } else {
@@ -137,7 +132,6 @@ export default function MarketOverview() {
           )}
         </div>
       </div>
->>>>>>> Stashed changes
     </div>
   );
 }

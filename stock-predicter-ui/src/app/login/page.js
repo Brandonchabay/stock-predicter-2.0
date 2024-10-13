@@ -22,7 +22,7 @@ export default function SignIn() {
 
     try {
       await loginUser(email, password);
-      router.push("/");
+      router.push("/pricing");
     } catch (error) {
       console.error(error);
       setError("Login failed. Please check your credentials.");
