@@ -12,17 +12,20 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    setError("");
     try {
       await createUser(email, password);
       router.push("/");
     } catch (error) {
       console.error(error);
+      setError("Signup failed. Please check your credentials and try again.");
     } finally {
       setLoading(false);
     }
@@ -126,6 +129,7 @@ export default function Signup() {
             </label>
           </div>
         </div>
+        {error && <p className="mt-4 text-red-600">{error}</p>}{" "}
         <div className="mt-10">
           <button
             type="submit"

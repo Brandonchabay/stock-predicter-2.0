@@ -11,17 +11,21 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    setError("");
+
     try {
       await loginUser(email, password);
       router.push("/");
     } catch (error) {
       console.error(error);
+      setError("Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
     }
@@ -103,6 +107,7 @@ export default function SignIn() {
             </label>
           </div>
         </div>
+        {error && <p className="text-red-500 mt-2">{error}</p>}{" "}
         <div className="mt-10">
           <button
             type="submit"

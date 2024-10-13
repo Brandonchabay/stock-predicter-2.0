@@ -9,15 +9,17 @@ export const createUser = (email, password) => {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("successful user created: " + user);
+      return user;
     })
     .catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      throw error;
     });
 };
 
 export const loginUser = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("successful user logged in: " + user);
@@ -25,6 +27,7 @@ export const loginUser = (email, password) => {
     .catch((error) => {
       const errorMessage = error.message;
       console.log(errorMessage);
+      throw error;
     });
 };
 
