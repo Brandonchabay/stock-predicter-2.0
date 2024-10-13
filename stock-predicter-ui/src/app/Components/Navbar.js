@@ -97,10 +97,10 @@ export default function Navbar() {
               Market Overview
             </Link>
             <Link
-              href="/portfolio"
+              href="/"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Portfolio
+              Welcome
             </Link>
             <Link
               href="/pricing"
@@ -109,7 +109,7 @@ export default function Navbar() {
               Pricing
             </Link>
             <input
-              className="flex flex-grow h-6 px-4 text-sm font-semibold leading-6 text-gray-900 bg-gray-50 rounded-lg"
+              className="flex flex-grow h-6 px-4 text-xs font-semibold leading-6 text-gray-900 bg-gray-50 rounded-lg"
               placeholder="Search..."
             ></input>
           </div>

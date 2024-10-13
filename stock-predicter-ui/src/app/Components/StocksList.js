@@ -24,6 +24,47 @@ const stocks = [
     imageUrl:
       "https://m.media-amazon.com/images/G/01/gc/designs/livepreview/amazon_dkblue_noto_email_v2016_us-main._CB468775337_.png",
   },
+  {
+    ticker: "NVDA",
+    price: "$1020.00",
+    imageUrl:
+      "https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/02-nvidia-logo-color-grn-500x200-4c25-p@2x.png",
+  },
+  {
+    ticker: "TSLA",
+    price: "$299.20",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/1200px-Tesla_logo.png",
+  },
+  {
+    ticker: "TELL",
+    price: "$10.00",
+    imageUrl:
+      "https://download.logo.wine/logo/Tellurian_Inc/Tellurian_Inc-Logo.wine.png",
+  },
+  {
+    ticker: "GME",
+    price: "$2.21",
+    imageUrl: "https://cdn.worldvectorlogo.com/logos/gamestop.svg",
+  },
+  {
+    ticker: "COST",
+    price: "42.00",
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZOxAF6Jir4P6XiD_U2sa_HUzuwAxMmgqkAw&s",
+  },
+  {
+    ticker: "AMC",
+    price: "$1.89",
+    imageUrl:
+      "https://cdn.vectorstock.com/i/1000v/49/39/amc-logo-on-white-background-vector-36054939.jpg",
+  },
+  {
+    ticker: "SAVE",
+    price: "$800.00",
+    imageUrl:
+      "https://i.etsystatic.com/11453548/r/il/8ec664/1689755000/il_570xN.1689755000_9e6k.jpg",
+  },
 ];
 
 export default function StockList({ onStockClick, loading, selectedStock }) {
