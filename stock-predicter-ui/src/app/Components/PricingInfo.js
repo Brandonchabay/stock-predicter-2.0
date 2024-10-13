@@ -1,6 +1,15 @@
+"use client";
+import React from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import { CheckIcon } from "@heroicons/react/20/solid";
-//5387
+import Link from "next/link";
 
+// Load your Stripe publishable key
+const stripePromise = loadStripe(
+  "pk_test_51Q9N102Kpn5vGTA19YaNSzTxHsknmhXJSmMcsoklcyWzjCcxZe2lTFPvtyOT4kOoEWY9Y4AlbRDexypSJioR7xKS00FSfYe68A"
+); // Replace with your Stripe publishable key
+
+// Pricing tiers
 const tiers = [
   {
     name: "Basic Plan",
@@ -29,11 +38,40 @@ const tiers = [
   },
 ];
 
+// Helper function for classNames
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function PricingInfo() {
+  // Function to handle Stripe Checkout
+  const handlePayment = async (tier) => {
+    const stripe = await stripePromise;
+
+    // Call your backend to create a Checkout session
+    const response = await fetch(
+      "http://localhost:4242/create-checkout-session",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ plan: tier.name }),
+      }
+    );
+
+    const session = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    }
+  };
+
   return (
     <div className="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-2xl text-center lg:max-w-4xl">
@@ -118,8 +156,8 @@ export default function PricingInfo() {
                 </li>
               ))}
             </ul>
-            <a
-              href={tier.href}
+            <button
+              onClick={() => handlePayment(tier.featured)}
               aria-describedby={tier.id}
               className={classNames(
                 tier.featured
@@ -128,8 +166,9 @@ export default function PricingInfo() {
                 "mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10"
               )}
             >
+              {/* Updated button to handle Stripe payment */}
               Get started today
-            </a>
+            </button>
           </div>
         ))}
       </div>

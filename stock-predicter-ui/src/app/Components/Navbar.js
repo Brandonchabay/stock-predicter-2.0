@@ -27,6 +27,7 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import { useCurrentUser } from "../../firebase/auth.js";
 
 const products = [
   {
@@ -68,6 +69,8 @@ const callsToAction = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const user = useCurrentUser();
+  console.log(user);
 
   return (
     <header className="bg-white">
@@ -161,10 +164,10 @@ export default function Navbar() {
               Portfolio
             </Link>
             <Link
-              href="/sell"
+              href="/pricing"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Sell
+              Pricing
             </Link>
             <input
               className="flex flex-grow h-6 px-4 text-sm font-semibold leading-6 text-gray-900 bg-gray-50 rounded-lg"
@@ -177,7 +180,8 @@ export default function Navbar() {
             href="/login"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Log in <span aria-hidden="true">&rarr;</span>
+            {user.currentUser !== null ? user.currentUser.email : "Login"}
+            <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </nav>

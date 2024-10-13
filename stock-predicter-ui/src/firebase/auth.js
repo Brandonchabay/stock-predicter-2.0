@@ -1,8 +1,11 @@
+"use client";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "./firebase.js";
+import { useState, useEffect } from "react";
 
 export const createUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
