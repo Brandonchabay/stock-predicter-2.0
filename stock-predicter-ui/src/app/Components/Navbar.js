@@ -147,24 +147,30 @@ export default function Navbar() {
             </PopoverPanel>
           </Popover>
 
-          <Link
-            href="/market_overview"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Market Overview
-          </Link>
-          <Link
-            href="/portfolio"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Portfolio
-          </Link>
-          <Link
-            href="/sell"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Sell
-          </Link>
+          <div className="flex space-x-14 flex-grow">
+            <Link
+              href="/market_overview"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Market Overview
+            </Link>
+            <Link
+              href="/portfolio"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="/sell"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Sell
+            </Link>
+            <input
+              className="flex flex-grow h-6 px-4 text-sm font-semibold leading-6 text-gray-900 bg-gray-50 rounded-lg"
+              placeholder="Search..."
+            ></input>
+          </div>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
@@ -186,9 +192,9 @@ export default function Navbar() {
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                alt=""
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
+              //alt=""
+              // src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+              //className="h-8 w-auto"
               />
             </a>
             <button
