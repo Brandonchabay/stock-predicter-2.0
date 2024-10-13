@@ -3,16 +3,29 @@
 import { Switch } from "@headlessui/react";
 import { createUser } from "../../firebase/auth.js";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Signup() {
   const [agreed, setAgreed] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await createUser(email, password);
+    setLoading(true);
+    try {
+      await createUser(email, password);
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,9 +129,20 @@ export default function Signup() {
         <div className="mt-10">
           <button
             type="submit"
-            className="block w-full rounded-md bg-black px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            disabled={loading}
+            className={`flex justify-center items-center gap-2 h-12 w-full rounded-md px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-black hover:bg-gray-600"
+            }`}
           >
-            Sign up
+            {loading ? (
+              <>
+                <CircularProgress size={30} />
+              </>
+            ) : (
+              "Sign up"
+            )}
           </button>
         </div>
       </form>
